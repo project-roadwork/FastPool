@@ -1,58 +1,24 @@
-# ObjectPool Module
+# FastPool
+Derived from: ObjectPool by qaltx (under the MIT License)
+	ObjectPool: https://github.com/notqaltx/ObjectPool.git
 
-## Overview
-The `ObjectPool` module provides a mechanism for efficiently managing objects without causing FPS drops. It allows objects to be reused rather than recreated, optimizing performance and resource usage.
+   	Modifications:
+   		- Replaced class/metatable-based pools with closure-based pools
+   		- Removed UsageMetrics table storage; metrics are stored as individual numbers
+   		  and are only assembled into a table when requested
+   		- Added lifecycle functions: Destroy(), Reset(), and Clear()
+   		- Added utility functions: TogglePooling() and GetMetrics()
+		- Renamed: ObjectPool.new() -> FastPool()
+		- Renamed: Pool:GetObject() -> Pool.Get()
+		- Renamed: Pool:ReturnObject() -> Pool.Return()
+		- Tracks number of reused objects
+		- Removed ActiveObjects table in order to reduce memory usage with many objects
+		- Removed HierarchicalPools table
+		- No longer traditional object-oriented programming (OOP)
+		- Removed mutex
+		- No longer Instance-centric
+		- New destroy() argument
+		- Removed debugger and signal module
 
-## Usage
-
-1. **Initialization:**
-   - Create an instance of `ObjectPool` using `ObjectPool.new()` with specified object template, creation, and reset functions.
-   - The `create` function should create new objects based on the specified template.
-   - The `reset` function should reset the object's state to be ready for reuse.
-
-2. **Object Retrieval:**
-   - Retrieve objects from the pool using `:GetObject()` method.
-   - New objects are created if the pool is empty, up to the maximum pool size limit.
-
-3. **Object Return:**
-   - Return objects to the pool after use with `:ReturnObject(obj)`.
-   - Objects are reset and made available for reuse.
-
-## Example
-
-```lua
-local ObjectPool = require(script.ObjectPool)
-
--- Define object creation and reset functions
-local function createObject(template: Model)
-    local newObj = template:Clone()
-    return newObj
-end
-
-local function resetObject(obj)
-    obj.Position = Vector3.new(0, 0, 0)
-    obj.Parent = nil
-end
-
-local objectTemplate = Instance.new("Part")
-local minSize, maxSize = 10, 50
-local pool = ObjectPool.new(objectTemplate, createObject, resetObject, minSize, maxSize)
-
--- Get an object from the pool and then return it
-local obj1 = pool:GetObject()
-wait(1)
-pool:ReturnObject(obj1)
-
-local obj2 = pool:GetObject()
-wait(1)
-pool:ReturnObject(obj2)
-```
-
-- More information, about functions you can read in module.
-
-## Links
-
-- [Roblox DevForum Page](https://devforum.roblox.com/t/objectpool-module-for-cloning-objects-without-lags/3059330)
-- [Creator's YouTube Channel](https://youtube.com/@qaltx)
-
--- Programmed by notqaltx (@qaltx)
+## License
+MIT License or Apache License 2.0 WITH LLVM-exception
