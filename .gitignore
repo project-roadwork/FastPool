@@ -1,1 +1,13 @@
-.vscode
+# Pesde
+.pesde
+roblox_packages
+lune_packages
+luau_packages
+node_modules
+
+lib
+/include
+out
+
+# Rojo
+sourcemap.json
