@@ -302,16 +302,14 @@ export type Pool<T> = {
 	read GetMetrics: () -> UsageMetrics,
 	read TogglePooling: (boolean) -> ()
 }
-export type FastPool = {
-	read __VERSION: string,
-	read new: <T>(
-		template: T,
-		create: (T) -> T,
-		reset: (T) -> (),
-		destroy: (T) -> (),
-		minSize: number?,
-		maxSize: number?
-	) -> Pool<T>
-}
+
+export type FastPool = <T>(
+    template: T,
+    create: (T) -> T,
+    reset: (T) -> (),
+    destroy: (T) -> (),
+    minSize: number?,
+    maxSize: number?
+) -> Pool<T>
 
 return FastPool
