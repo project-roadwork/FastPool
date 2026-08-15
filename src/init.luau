@@ -38,7 +38,7 @@
 ]]
 
 const SOURCE: string = "[FastPool]"
-const __VERSION: string = "1.0.0"
+const __VERSION: string = "1.1.0"
 const _DESTROY_ERROR: string  = `{SOURCE} Attempted to use a destroyed pool.`
 
 --[=[
