@@ -52,7 +52,6 @@ const _DESTROY_ERROR: string  = `{SOURCE} Attempted to use a destroyed pool.`
 	@param maxSize number Maximum size limit of the pool (optional, default 50).
 	@return Pool New object pool
 ]=]
-@native
 @checked
 const function FastPool<T>(
 	template: T,
@@ -87,7 +86,6 @@ const function FastPool<T>(
 
 	-- Private: Destroys all available objects in the pool.
 	-- @private
-	@native
 	const function _DestroyAvailableObjects(): ()
 		for i: number = 1, availableCount do
 			destroy(objects[i] :: T)
@@ -98,7 +96,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Toggles pooling functionality
-	@native
 	const function TogglePooling(enabled: boolean): ()
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -108,7 +105,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Returns an object from the pool if one is available, otherwise creates a new object.
-	@native
 	const function Get(): T
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -149,7 +145,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Returns an object to the pool.
-	@native
 	const function Return(object: T): ()
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -175,7 +170,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Prewarms the pool with the given number of objects.
-	@native
 	const function Prewarm(count: number): ()
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -201,7 +195,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Removes every pooled object and resets metrics; however, pool remains usable. Note that active count does not change.
-	@native
 	const function Clear(): ()
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -221,7 +214,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Restores the pool to its initial state and recreates the pool.
-	@native
 	const function Reset(): ()
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
@@ -242,7 +234,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Permanently destroys the pool; further uses throws an error.
-	@native
 	const function Destroy(): ()
 		if destroyed then
 			return
@@ -257,7 +248,6 @@ const function FastPool<T>(
 	end
 
 	-- Public: Gets metrics of the pool.
-	@native
 	const function GetMetrics(): UsageMetrics
 		if destroyed then
 			error(_DESTROY_ERROR, 2)
