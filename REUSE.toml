@@ -1,0 +1,28 @@
+# REUSE.toml
+#
+# This file keeps track of licensing within all files in the repository except src/**.
+# For licensing information in the source code, refer to the headers and comments in each file.
+# Each file in the source code includes copyright authors and SPDX license identifiers.
+
+version = 1
+
+# README, documentation content, branding, etc.
+[[annotations]]
+path = [
+    "README.md"
+]
+SPDX-FileCopyrightText = [
+"2025-2026 Illinois_Roadbuff (Rogue Jr) <illinois_roadbuff@proton.me>",
+"2025-2026 Project Roadwork and Contributors"]
+
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# Common Property
+[[annotations]]
+path = [
+    ".gitignore",
+    "selene.toml"
+
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0 OR Unlicense"
